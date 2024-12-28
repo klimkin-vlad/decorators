@@ -45,9 +45,12 @@ def memo(func):
   cache = {}
 
   def fmemo(*args):
-      result = func(*args)
-      cache[args] = result
-      return result
+      if args in cache:
+          return cache[args]
+      else:
+          result = func(*args)
+          cache[args] = result
+          return result
 
   fmemo.cache = cache
   return fmemo
