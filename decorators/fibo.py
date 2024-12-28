@@ -1,27 +1,27 @@
 from decorators import *
 
-def fib(n):
+def fib1(n):
     if n < 2:
         return n
-    return fib(n-2) + fib(n-1)
+    return fib1(n-2) + fib1(n-1)
  
 # измеряем время выполнения
 @benchmark
 def call1():
-    fib(33)
+    fib1(64)
 
 @memo
-def fib(n):
+def fib2(n):
     if n < 2:
         return n
-    return fib(n-2) + fib(n-1)
+    return fib2(n-2) + fib2(n-1)
     
 # измеряем время выполнения
 @benchmark
 def call2():
-    fib(33)
+    fib2(64)
 
-print("С кэшированием:")
-call1()
 print("Без кэширования:")
+call1()
+print("С кэшированием:")
 call2()
